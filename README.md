@@ -1,15 +1,16 @@
 # backend-performance-improvement
 
-**backend-performance-improvement**는 성능을 개선하는 방법과 부하 관련 테스트 내용을 제공합니다.
+**backend-performance-improvement** 는 성능을 개선하는 방법과 부하 관련 테스트 내용을 제공합니다.
 
 <br><br>
 
 ## 🔧 **기술 스택**
 
-- **프레임워크:** Spring Boot 2.7.15
+- **프레임워크:** Spring Boot 3.3.2
 - **ORM:** JPA / QueryDSL
-- **언어:** Java 11
-- **데이터베이스:** MySQL
+- **언어:** Java 17
+- **데이터베이스:** PostgreSQL
+- **API명세:** Swagger
 
 <br><br>
 
