@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.ehcache.org/v3" xmlns:jsr107="http://www.ehcache.org/v3/jsr107">
+    <service>
+        <jsr107:defaults enable-management="true" enable-statistics="true"/>
+    </service>
+
+    <!-- 기본 캐시 설정 -->
+    <cache-template name="defaultCacheTemplate">
+        <expiry>
+            <ttl unit="seconds">20</ttl> <!-- timeToLiveSeconds -->
+        </expiry>
+        <resources>
+            <heap unit="entries">1000</heap> <!-- maxElementsInMemory -->
+        </resources>
+    </cache-template>
+
+    <!-- noticeCache 설정 -->
+    <cache alias="noticeCache" uses-template="defaultCacheTemplate">
+        <!--<key-type>java.lang.String</key-type>
+        <value-type>java.lang.String</value-type>-->
+        <expiry>
+            <ttl unit="seconds">60</ttl> <!-- 캐시 TTL 설정 (예: 3600초) -->
+        </expiry>
+        <resources>
+            <heap unit="entries">10000</heap> <!-- 최대 캐시 항목 수 -->
+        </resources>
+    </cache>
+</config>
