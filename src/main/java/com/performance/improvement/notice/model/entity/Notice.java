@@ -1,6 +1,5 @@
 package com.performance.improvement.notice.model.entity;
 
-import com.performance.improvement.example.model.dto.ExampleDetailResponse;
 import com.performance.improvement.notice.model.dto.NoticeDetailResponse;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -8,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -16,7 +15,7 @@ import java.time.Instant;
 @Table(name = "notice")
 public class Notice {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notice_id_gen")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -34,11 +33,11 @@ public class Notice {
 
     @NotNull
     @Column(name = "create_date", nullable = false)
-    private Instant createDate;
+    private LocalDateTime createDate;
 
     @NotNull
     @Column(name = "update_date", nullable = false)
-    private Instant updateDate;
+    private LocalDateTime updateDate;
 
     public NoticeDetailResponse toDetailResponse() {
         return new NoticeDetailResponse(

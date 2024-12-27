@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -36,5 +37,11 @@ public class NoticeService {
         // put 메소드를 사용하여 key 설정
         cacheManager.getCache("noticeCache").put("noticeList" + pageable.getPageNumber(), notices);
         return notices;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Notice> findAllNoticeByDate(LocalDateTime startDate, LocalDateTime endDate) {
+
+        return noticeRepository.findByUpdateDateBetween(startDate, endDate);
     }
 }

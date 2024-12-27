@@ -14,6 +14,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -45,5 +47,21 @@ public class NoticeController {
     ) {
         Page<Notice> noticeList = noticeService.findPageNotice(pageable);
         return ResponseEntity.ok(MainResponse.getSuccessResponse(noticeList));
+    }
+
+    @Operation(summary = "알림 조회(Date)", description = "알림을 날짜 조건으로 조회합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "notice read where date: SUCCESS"),
+            @ApiResponse(responseCode = "400", description = "Bad Request: Invalid input data.")
+    })
+    @GetMapping("/dates")
+    public ResponseEntity<MainResponse<List<Notice>>> findAllNoticeByDate(
+        @RequestParam("startDate") String startDate,
+        @RequestParam("endDate") String endDate
+    ) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        List<Notice> noticesByDate = noticeService.findAllNoticeByDate(LocalDateTime.parse(startDate, formatter), LocalDateTime.parse(endDate, formatter));
+        return ResponseEntity.ok(MainResponse.getSuccessResponse(noticesByDate));
     }
 }
