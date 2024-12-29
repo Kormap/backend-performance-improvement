@@ -41,6 +41,7 @@ dependencies {
 
     implementation 'org.postgresql:postgresql:42.6.0'
     implementation 'com.mysql:mysql-connector-j'
+    implementation 'com.mailjet:mailjet-client:5.2.5'
 
     //cache 관련 설정
     implementation 'org.springframework.boot:spring-boot-starter-cache'
